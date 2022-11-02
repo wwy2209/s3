@@ -16,6 +16,7 @@ export const uploadParams = {
   Bucket: "sg1--try--001-js-upload",
   // Add the required 'Key' parameter using the 'path' module.
   Key: 'folder-path/test.txt',
+  // Key: 'folder-path/db5.zip',
   // Add the required 'Body' parameter
   // Body: fileStream,
 };
