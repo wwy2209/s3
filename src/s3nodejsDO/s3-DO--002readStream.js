@@ -7,6 +7,7 @@ import fs from "fs";
 
 // const file = "../../../xx.txt";
 const file = "xx.txt";
+// const file = "db5.zip";
 const fileStream = fs.createReadStream(file);
 
 // Set the parameters
@@ -14,6 +15,7 @@ export const uploadParams = {
   Bucket: "sg1--try--001-js-upload",
   // Add the required 'Key' parameter using the 'path' module.
   Key: 'folder-path/test.txt',
+  Key: 'folder-path/db5.zip',
   // Add the required 'Body' parameter
   Body: fileStream,
 };
@@ -22,7 +24,17 @@ export const uploadParams = {
 // Upload file to specified bucket.
 export const run = async () => {
   try {
+    const timeStart = Date.now()
+
     const data = await s3Client.send(new PutObjectCommand(uploadParams));
+
+    const timeEnd = Date.now()
+    const timeUsed = timeEnd - timeStart
+    console.log('timeUsed: ', timeUsed);
+    console.log("Success--;.");
+
+
+    // const data = await s3Client.send(new PutObjectCommand(uploadParams));
     console.log("Success", data);
     return data; // For unit tests.
   } catch (err) {

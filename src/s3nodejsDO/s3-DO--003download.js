@@ -7,10 +7,11 @@ import { s3Client } from "./s3Client.js"; // Helper function that creates an Ama
 import fs from "fs/promises";
 
 // const file = "../../../xx.txt";
-const file = "xx.txt";
 // const fileStream = fs.createReadStream(file);
 
 // Set the parameters
+// const file = "xx.txt";
+const file = "out.txt";
 export const uploadParams = {
   Bucket: "sg1--try--001-js-upload",
   // Add the required 'Key' parameter using the 'path' module.
@@ -18,6 +19,17 @@ export const uploadParams = {
   // Add the required 'Body' parameter
   // Body: fileStream,
 };
+
+// =====
+// const file = "out--5.zip";
+
+// // Set the parameters
+// export const uploadParams = {
+//   Bucket: "sg1--try--001-js-upload",
+//   Key: 'folder-path/db5.zip',
+// };
+
+// =====
 
 
 // Upload file to specified bucket.
@@ -28,7 +40,8 @@ export const run = async () => {
     // console.log(await data.Body.toString('utf-8'));
     // const { Body } = await s3Client.getObject(uploadParams).promise()
     const { Body } = await s3Client.getObject(uploadParams)
-    const location = 'out.txt'
+    // const location = 'out.txt'
+    const location = file
     await fs.writeFile(location, Body)
     // console.log("Success", data);
     const timeEnd = Date.now()
